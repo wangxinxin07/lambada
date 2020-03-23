@@ -43,8 +43,21 @@ public class TestChapterFive {
 
 //        testJoining();
 
-        testCombine();
+//        testCombine();
 
+        testComputeIfAbsent();
+    }
+
+    private static void testComputeIfAbsent() {
+
+        Map<String, Person> personMap = new HashMap<>();
+        Person zhangsan = Person.builder().name("zhangsan").age(11).build();
+        personMap.put(zhangsan.getName(), zhangsan);
+
+        //不存在则新增并put到map中
+        Person lisi = personMap.computeIfAbsent("lisi", name -> Person.builder().name(name).age(11).build());
+        log.info("lisi={}", JSON.toJSONString(lisi));
+        log.info("personMap={}", JSON.toJSONString(personMap));
     }
 
     //组合收集器
